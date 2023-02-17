@@ -1,5 +1,38 @@
 from microbit import *
 import random
+import music
+import speech
+import time
+
+def blast(x,y,dir):
+    global score
+
+    if dir == 0:        #north
+        for i in range(5):
+            display.set_pixel(x,4-i,9)
+            time.sleep(.1)
+            display.set_pixel(x,4-i,0)
+            display.set_pixel(x,y,9)
+    if dir == 1:        #east
+            for i in range(5):
+                display.set_pixel(4-i,y,9)
+                time.sleep(.1)
+                display.set_pixel(4-i,y,0)
+                display.set_pixel(x,y,9)
+    if dir == 2:        #south
+        for i in range(5):
+            display.set_pixel(x,i,9)
+            time.sleep(.1)
+            display.set_pixel(x,i,0)
+            display.set_pixel(x,y,9)
+    
+    if dir == 3:        #west
+            for i in range(5):
+                display.set_pixel(i,y,9)
+                time.sleep(.1)
+                display.set_pixel(i,y,0)
+                display.set_pixel(x,y,9)
+
 
 def fnstars():
     for i in range(5):
