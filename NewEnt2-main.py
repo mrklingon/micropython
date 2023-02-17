@@ -11,6 +11,7 @@ from stars import *
 
 
 def blast(x):
+    global score
     for i in range(5):
         if display.get_pixel(x,4-i) == 8:
             #Klingon!
@@ -91,7 +92,7 @@ while True:
             time.sleep(.2)
      
    
-    if button_a.was_pressed() and button_b.was_pressed():
+    if (button_a.was_pressed() and button_b.was_pressed()) or accelerometer.was_gesture('shake'):
         if motion:
             motion = False
         else:
