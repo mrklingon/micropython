@@ -8,18 +8,6 @@ from stars import *
 
 
 
-
-
-def blast(x):
-    global score
-    for i in range(5):
-        if display.get_pixel(x,4-i) == 8:
-            #Klingon!
-            score = score + 1+ random.randrange(10)
-            speech.say("Klingon!")
-            music.BLUES
-        display.set_pixel(x,4-i,9)
-
 shipx = 2
 shipy = 4
 score = 0
@@ -92,14 +80,17 @@ while True:
             time.sleep(.2)
      
    
-    if (button_a.was_pressed() and button_b.was_pressed()) or accelerometer.was_gesture('shake'):
+    if button_a.was_pressed() and button_b.was_pressed():
         if motion:
             motion = False
         else:
             motion = True
         
 
-    
+    if accelerometer.was_gesture('shake') or pin1.is_touched():
+        blast(shipx,shipy,dir)
+
+        
     if button_a.is_pressed():
        motion = True
        dir = dir+1
