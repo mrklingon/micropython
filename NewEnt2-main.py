@@ -98,10 +98,7 @@ while True:
            dir = 0
     
     if button_b.is_pressed():
-       motion = True
-       dir = dir-1
-       if dir < 0:
-           dir = 3
+       blast(shipx,shipy,dir)
        
        
     
