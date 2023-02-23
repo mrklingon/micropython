@@ -22,3 +22,5 @@ repository of Mu created micropython code for micro:bit
 * namaste.py
 * NewTest.py
 * solarsys.py
+* stars.py - displays star fields 
+* SvenskFalcon.py - uses stars.py
