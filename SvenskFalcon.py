@@ -54,3 +54,14 @@ while True:
     display.scroll(str(score))
     music.play(music.DADADADUM)
     time.sleep(1)
+    wait = True
+    while wait:
+        display.show(Image.SQUARE)
+        time.sleep(.2)
+        display.show(Image.SQUARE_SMALL)
+        time.sleep(.2)
+
+        if button_a.is_pressed()or button_b.is_pressed():
+            wait = False
+                    
+        
