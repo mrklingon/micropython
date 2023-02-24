@@ -57,9 +57,9 @@ while True:
     wait = True
     while wait:
         display.show(Image.SQUARE)
-        time.sleep(.2)
+        time.sleep(.5)
         display.show(Image.SQUARE_SMALL)
-        time.sleep(.2)
+        time.sleep(.5)
 
         if button_a.is_pressed()or button_b.is_pressed():
             wait = False
