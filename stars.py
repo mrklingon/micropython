@@ -6,7 +6,7 @@ import time
 
 def blast(x,y,dir):
     global score
-
+    music.pitch(100,200)
     if dir == 0:        #north
         for i in range(5):
             display.set_pixel(x,4-i,9)
