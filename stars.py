@@ -4,6 +4,13 @@ import music
 import speech
 import time
 
+
+dirs = [0,1,2,3]
+north = 0
+east = 1
+south = 2
+west = 3
+
 def blast(x,y,dir):
     global score
     music.pitch(100,200)
@@ -14,11 +21,11 @@ def blast(x,y,dir):
             display.set_pixel(x,4-i,0)
             display.set_pixel(x,y,9)
     if dir == 1:        #east
-            for i in range(5):
-                display.set_pixel(4-i,y,9)
-                time.sleep(.1)
-                display.set_pixel(4-i,y,0)
-                display.set_pixel(x,y,9)
+        for i in range(5):
+            display.set_pixel(4-i,y,9)
+            time.sleep(.1)
+            display.set_pixel(4-i,y,0)
+            display.set_pixel(x,y,9)
     if dir == 2:        #south
         for i in range(5):
             display.set_pixel(x,i,9)
@@ -27,11 +34,11 @@ def blast(x,y,dir):
             display.set_pixel(x,y,9)
     
     if dir == 3:        #west
-            for i in range(5):
-                display.set_pixel(i,y,9)
-                time.sleep(.1)
-                display.set_pixel(i,y,0)
-                display.set_pixel(x,y,9)
+        for i in range(5):
+            display.set_pixel(i,y,9)
+            time.sleep(.1)
+            display.set_pixel(i,y,0)
+            display.set_pixel(x,y,9)
 
 
 def fnstars():
