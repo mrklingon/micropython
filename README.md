@@ -26,3 +26,4 @@ repository of Mu created micropython code for micro:bit
 * SvenskFalcon.py - uses stars.py
 * NewEnt.py - test with stars.py
 * NewEnt2.py - another test with stars.py
+* flightone.py - another test with stars.py
