@@ -3,7 +3,8 @@ from microbit import *
 from universe import *
 import music
 import time
-diam = 30
+import speech
+diam = 20
 initUni(diam)
 
 for x in range(5):
@@ -25,8 +26,13 @@ dirs = [north,east,south,west]
 dir = north
 
 while True:
-    if button_a.was_pressed() and button_b.was_pressed():
-        dir = stop
+    if (button_a.was_pressed() and button_b.was_pressed()) or accelerometer.was_gesture('shake'):
+        if dir != stop:
+            dir = stop
+        else:
+            if cosmos[spot(x+sx,y+sy)]>0:
+                display.scroll(names[spot(x+sx,y+sy)])
+                speech.say(names[spot(x+sx,y+sy)])
     else:
         if button_b.is_pressed():
             sy = sy + 1
