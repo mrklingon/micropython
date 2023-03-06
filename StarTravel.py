@@ -1,6 +1,7 @@
 # Imports go at the top
 from microbit import *
 from universe import *
+import music
 import time
 diam = 30
 initUni(diam)
@@ -17,7 +18,8 @@ stop = 5
 
 x=0
 y=0
-
+sx = 2
+sy = 2
 dirs = [north,east,south,west]
 
 dir = north
@@ -25,6 +27,16 @@ dir = north
 while True:
     if button_a.was_pressed() and button_b.was_pressed():
         dir = stop
+    else:
+        if button_b.is_pressed():
+            sy = sy + 1
+            if sy > 4:
+                sy = 0
+        if button_a.is_pressed():
+            sx = sx + 1
+            if sx > 4:
+                sx = 0
+                
     if accelerometer.was_gesture('up'):
         dir=north
     if accelerometer.was_gesture('down'):
@@ -55,4 +67,5 @@ while True:
 
 
     showxy(x,y)
+    display.set_pixel(sx,sy,9)
     time.sleep(.25)
