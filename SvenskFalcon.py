@@ -5,6 +5,16 @@ import time
 import music
 import speech
 from stars import *
+
+droid = False # autopilot flag
+ship = Image(
+    '55880:'
+    '08880:'
+    '08888:'
+    '00880:'
+    '00000:')
+
+
 while True:
     lives = 3
     
@@ -21,7 +31,9 @@ while True:
     
     dir = west
     motion = True
-    display.scroll("SvenskFalcon ")
+    display.show(ship)
+    time.sleep(1)
+    display.clear()
     
     while lives > 0:
         score = score + 1    
@@ -33,9 +45,20 @@ while True:
         display.set_pixel(shipx,shipy,9)
         time.sleep(.2)
         
-        if accelerometer.was_gesture('shake') or pin1.is_touched():
+        if  pin1.is_touched():
             blast(shipx,shipy,dir)
-    
+
+        if accelerometer.was_gesture('shake'):
+            music.pitch(242,250)
+            if droid:
+                droid = False
+            else:
+                droid = True
+
+        if droid: #autopilot active
+            blast(shipx,shipy,dir)
+            time.sleep(random.randrange(10)/10)
+        
         if button_a.is_pressed() and button_b.is_pressed():
             blast(shipx,shipy,dir)
         else:
@@ -63,9 +86,20 @@ while True:
         display.set_pixel(shipx,shipy,9)
         time.sleep(.2)
         
-        if accelerometer.was_gesture('shake') or pin1.is_touched():
+        if pin1.is_touched():
             blast(shipx,shipy,dir)
-    
+            
+        if accelerometer.was_gesture('shake'):
+                music.pitch(242,250)
+                if droid:
+                    droid = False
+                else:
+                    droid = True
+
+        if droid: #autopilot active
+              blast(shipx,shipy,dir)
+              time.sleep(random.randrange(10)/10)
+            
         if button_a.is_pressed() and button_b.is_pressed():
             blast(shipx,shipy,dir)
         else:
