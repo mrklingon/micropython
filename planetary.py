@@ -19,7 +19,7 @@ while True:
         speech.say(planets[planet])
         curp = planet
 
-    if button_a.is_pressed() and button_b.is_pressed():
+    if (button_a.is_pressed() and button_b.is_pressed()) or accelerometer.was_gesture('shake') :
         if info:
             info = False
             speech.say("planet mode")
