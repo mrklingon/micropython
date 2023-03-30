@@ -3,7 +3,6 @@ from microbit import *
 import random
 import time
 import music
-import speech
 from stars import *
 
 droid = False # autopilot flag
@@ -115,6 +114,7 @@ while True:
                
     display.show(Image.SKULL)
     music.play(music.FUNERAL)
+    display.scroll("score")
     display.scroll(str(score))
     music.play(music.DADADADUM)
     time.sleep(1)
@@ -125,7 +125,10 @@ while True:
         display.show(Image.SQUARE_SMALL)
         time.sleep(.5)
 
-        if button_a.is_pressed()or button_b.is_pressed():
+        if button_a.is_pressed():
             wait = False
+        if button_a.is_pressed()or button_b.is_pressed():
+            display.scroll("score")
+            display.scroll(str(score))
                     
         
