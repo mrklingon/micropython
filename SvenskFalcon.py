@@ -127,7 +127,7 @@ while True:
 
         if button_a.is_pressed():
             wait = False
-        if button_a.is_pressed()or button_b.is_pressed():
+        if button_b.is_pressed():
             display.scroll("score")
             display.scroll(str(score))
                     
