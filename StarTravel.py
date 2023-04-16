@@ -1,16 +1,15 @@
-# Imports go at the top
 from microbit import *
 from universe import *
-import music
 import time
 import speech
-diam = 20
-initUni(diam)
+diam = 20 #universe is 20x20
+initUni(diam) #initialize universe
 
 for x in range(5):
     showxy(x,x)
     time.sleep(.33)
 
+display.scroll("Star Traveler",delay=60)
 north = 0
 east = 1
 south = 2
@@ -26,23 +25,30 @@ dirs = [north,east,south,west]
 dir = north 
 
 while True:
+    #stop/start motion with A+B or "shake"
     if (button_a.was_pressed() and button_b.was_pressed()) or accelerometer.was_gesture('shake'):
         if dir != stop:
+            #save current direction
             sav = dir
             dir = stop
         else:
+            #restore motion
             if dir == stop:
                 dir = sav
             
     else:
         if button_b.is_pressed() and dir == stop:
+            #say the name if stopped at a star
            if cosmos[spot(x+sx,y+sy)]>0:
                 speech.say(names[spot(x+sx,y+sy)])
                
         if button_a.is_pressed()and dir == stop:
+            #print the name if stopped at a star
            if cosmos[spot(x+sx,y+sy)]>0:
                 display.scroll(names[spot(x+sx,y+sy)])
-               
+
+    #navigate "ship" on screen if motion stopped
+    #if in motion - set direction to the tilt direction
     if accelerometer.was_gesture('up'):
         if dir!= stop:
             dir=north
@@ -92,7 +98,8 @@ while True:
         if y>diam-5:
             y = 0     
 
-
+#display stars at the current x,y
     showxy(x,y)
     display.set_pixel(sx,sy,9)
+#display ship at current sx,sy location
     time.sleep(.25)
