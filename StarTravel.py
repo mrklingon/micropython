@@ -1,4 +1,4 @@
-# Imports go at the top
+    # Imports go at the top
 from microbit import *
 from universe import *
 import music
@@ -23,35 +23,56 @@ sx = 2
 sy = 2
 dirs = [north,east,south,west]
 
-dir = north
+dir = north 
 
 while True:
     if (button_a.was_pressed() and button_b.was_pressed()) or accelerometer.was_gesture('shake'):
         if dir != stop:
+            sav = dir
             dir = stop
         else:
-            if cosmos[spot(x+sx,y+sy)]>0:
-                display.scroll(names[spot(x+sx,y+sy)])
-                speech.say(names[spot(x+sx,y+sy)])
+            if dir == stop:
+                dir = sav
+            
     else:
-        if button_b.is_pressed():
+        if button_b.is_pressed() and dir == stop:
+           if cosmos[spot(x+sx,y+sy)]>0:
+                speech.say(names[spot(x+sx,y+sy)])
+               
+        if button_a.is_pressed()and dir == stop:
+           if cosmos[spot(x+sx,y+sy)]>0:
+                display.scroll(names[spot(x+sx,y+sy)])
+               
+    if accelerometer.was_gesture('up'):
+        if dir!= stop:
+            dir=north
+        else:
+            sy = sy - 1
+            if sy < 0:
+                sy = 0
+    if accelerometer.was_gesture('down'):
+        if dir!= stop:
+            dir=south
+        else:
             sy = sy + 1
             if sy > 4:
-                sy = 0
-        if button_a.is_pressed():
+                sy = 4
+        
+    if accelerometer.was_gesture('right'):
+        if dir!= stop:
+            dir=west
+        else:
             sx = sx + 1
             if sx > 4:
-                sx = 0
+                sx = 4
                 
-    if accelerometer.was_gesture('up'):
-        dir=north
-    if accelerometer.was_gesture('down'):
-        dir=south
-    if accelerometer.was_gesture('right'):
-        dir=west
     if accelerometer.was_gesture('left'):
-        dir=east
-    
+        if dir!= stop:
+            dir=east
+        else:
+            sx = sx - 1
+            if sx < 0:
+                sx = 0
     if dir == west:
         x=x-1
         if x<0:
