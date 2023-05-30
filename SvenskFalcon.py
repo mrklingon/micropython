@@ -32,6 +32,12 @@ while True:
     motion = True
     display.show(ship)
     time.sleep(1)
+
+    for i in range(6):
+        fnslideW()
+        display.set_pixel(4,2,0)
+        time.sleep(.1)
+        
     display.clear()
     
     while lives > 0:
