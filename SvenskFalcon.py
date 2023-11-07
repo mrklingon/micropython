@@ -27,6 +27,8 @@ while True:
     east = 1
     south = 2
     west = 3
+    speak = False
+    speaker.off()
     
     dir = west
     motion = True
@@ -52,6 +54,11 @@ while True:
         
         if  pin1.is_touched():
             blast(shipx,shipy,dir)
+            
+        if pin_logo.is_touched():
+            if speak:
+                speaker.off()
+                speak = False
 
         if accelerometer.was_gesture('shake'):
             music.pitch(242,250)
@@ -76,6 +83,9 @@ while True:
                shipy = shipy + 1
                if shipy > 4:
                    shipy=4
+    
+    speak = False
+    speaker.off()
     lives = 3
     dir = east
     shipx = 4 
@@ -90,6 +100,16 @@ while True:
             lives = lives - 1
         display.set_pixel(shipx,shipy,9)
         time.sleep(.2)
+
+        if pin_logo.is_touched():
+            if speak:
+                speaker.off()
+                speak = False
+            else:
+                speaker.on()
+                speak = True
+                
+            
         
         if pin1.is_touched():
             blast(shipx,shipy,dir)
