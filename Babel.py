@@ -1,11 +1,16 @@
 from microbit import *
 import random
 import time
+import speech
+
+talk = False
 
 debug = True
 def outPut(txt):
     display.scroll(txt)
     print(txt)
+    if talk:
+        speech.say(txt)
     
 def setWookie():
     outPut("Wookie")
@@ -102,7 +107,6 @@ setWookie()
 
 lang = 1
 done = False
-
 while True:
     if button_a.was_pressed():
     
@@ -132,5 +136,10 @@ while True:
     if button_b.was_pressed():
         outPut(mkword())
 
-    
-        
+    if accelerometer.was_gesture('shake'):
+        talk = not(talk)
+        if talk:
+            display.show(Image.YES)
+        else:
+            display.show(Image.NO)
+            
